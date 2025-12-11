@@ -1,0 +1,57 @@
+name: Scheduled Pipeline Run
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: "0 18 * * *" # runs daily at 2 AM Malaysia time (UTC+8)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Set up ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
+      - name: Run Tests
+        env:
+          BASE_URL: https://opensource-demo.orangehrmlive.com/
+          VALID_USERNAME: Admin
+          VALID_PASSWORD: admin123
+          BROWSER: chrome
+          HEADLESS: true
+        run: |
+          echo "Running tests in headless mode..."
+          mvn clean test
+
+      - name: Show Test Summary
+        if: always()
+        run: |
+          echo "====== Test Summary ======"
+          grep -A 5 "Results :" ui-automation/target/surefire-reports/*.txt || true
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            target/surefire-reports/
+            test-output/
