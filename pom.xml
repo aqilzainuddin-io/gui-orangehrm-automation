@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.myproject</groupId>
+  <artifactId>ui-automation</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>ui-automation</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+      <!-- -->
+      <dependency>
+        <groupId>io.github.cdimascio</groupId>
+        <artifactId>dotenv-java</artifactId>
+        <version>3.0.0</version>
+      </dependency>
+      
+      <!-- Selenium -->
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>4.15.0</version>
+      </dependency>
+
+      <!-- TestNG -->
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>7.10.2</version>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- WebDriverManager - manage browser driver binaries -->
+      <dependency>
+          <groupId>io.github.bonigarcia</groupId>
+          <artifactId>webdrivermanager</artifactId>
+          <version>5.5.3</version>
+      </dependency>
+
+      <!-- Optional: RestAssured (for API testing later) -->
+      <dependency>
+          <groupId>io.rest-assured</groupId>
+          <artifactId>rest-assured</artifactId>
+          <version>5.5.0</version>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+
+  <build>
+      <plugins>
+          <!-- Java Compiler -->
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.13.0</version>
+              <configuration>
+                  <release>21</release>
+              </configuration>
+          </plugin>
+
+          <!-- Surefire (runs TestNG tests when you run `mvn test`) -->
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>3.2.5</version>
+              <configuration>
+                  <includes>
+                      <include>**/*Test.java</include>
+                  </includes>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+
+</project>
