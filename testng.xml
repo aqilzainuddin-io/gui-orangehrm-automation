@@ -7,6 +7,7 @@
             <class name="com.orangehrm.tests.Login.LoginTest"/>
             <class name="com.orangehrm.tests.Dashboard.DashboardTest"/>
             <class name="com.orangehrm.tests.PIM.AddEmpTest"/>
+            <class name="com.orangehrm.tests.PIM.PIMTest"/>
         </classes>
     </test>
 </suite>
