@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Regression" preserve-order="true">
+    <test name="E2E Tests">
+        <classes>
+            <class name="com.orangehrm.tests.Login.LoginTest"/>
+            <class name="com.orangehrm.tests.Dashboard.DashboardTest"/>
+            <class name="com.orangehrm.tests.PIM.AddEmpTest"/>
+        </classes>
+    </test>
+</suite>
