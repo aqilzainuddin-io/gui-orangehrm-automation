@@ -1,6 +1,7 @@
 package com.orangehrm.tests.Login;
 
 import com.orangehrm.setup.BaseTest;
+import com.orangehrm.pages.dashboard.DashboardPage;
 import com.orangehrm.pages.login.LoginPage;
 import com.orangehrm.setup.EnvReader;
 import org.testng.Assert;
@@ -52,5 +53,13 @@ public class LoginTest extends BaseTest {
     public void invalidPasswordLogin(){
         loginPage.login(EnvReader.get("VALID_USERNAME"), EnvReader.get("INVALID_PASSWORD"));
         Assert.assertTrue(loginPage.isInvalidCredErrMsgVisible(), "Error message not displayed!");
+    }
+
+    @Test
+    public void validLogin() {
+        System.out.println("Login Test Ends");
+        loginPage.login(EnvReader.get("VALID_USERNAME"), EnvReader.get("VALID_PASSWORD"));
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        Assert.assertTrue(dashboardPage.isDashboardHeaderDisplayed(), "Dashboard not visible after valid login!");
     }
 }
