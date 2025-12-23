@@ -57,11 +57,13 @@ public class PIMPage extends BasePage {
     private By searchBtn = By.xpath("//button[normalize-space()='Search']");
     private By resetBtn = By.xpath("//button[normalize-space()='Reset']");
     private By addBtn = By.xpath("//button[normalize-space()='Add']");
+    private By editBtn = By.xpath("//div[contains(@class,'card-header-slot-content')]//i[contains(@class,'bi-pencil-fill')]");
+    private By deleteBtn = By.xpath("//div[contains(@class,'card-header-slot-content')]//i[contains(@class,'bi-trash')]");
 
     private By recordFoundTitle = By.xpath("//span[contains(normalize-space(),'Record Found')]");
     private By recordFoundByID = By.xpath("//div[text()='8989']");
     private By recordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='John52'] and .//div[normalize-space(text())='Doe']]");
-    
+    private By updatedRecordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='Robert'] and .//div[normalize-space(text())='Enstain']]");
 
     //-----------wait for element method-----------//
     private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
@@ -217,5 +219,25 @@ public class PIMPage extends BasePage {
         click(inputSubUnit);
         System.out.println("Sub unit input clicked");
         click(subUnitOption(optionText));
+    }
+
+    public void clickEditBtn(){
+        waitForElementVisible(editBtn, 5);
+        if(!isElementDisplayed(editBtn)){
+            System.out.println("Edit button not visible!");
+            return;
+        }
+        click(editBtn);
+        System.out.println("Edit button clicked");
+    }
+
+    public void clickDeleteBtn(){
+        waitForElementVisible(deleteBtn, 5);
+        if(!isElementDisplayed(deleteBtn)){
+            System.out.println("Delete button not visible!");
+            return;
+        }
+        click(deleteBtn);
+        System.out.println("Delete button clicked");
     }
 }
