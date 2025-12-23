@@ -1,7 +1,12 @@
 package com.orangehrm.pages.pim;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.orangehrm.pages.BasePage;
 
@@ -58,6 +63,11 @@ public class PIMPage extends BasePage {
     private By recordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='John52'] and .//div[normalize-space(text())='Doe']]");
     
 
+    //-----------wait for element method-----------//
+    private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     //------------Normal Method (Label)------------//
     public boolean isPIMHeaderDisplayed(){
         return isElementDisplayed(pimHeader);
@@ -99,6 +109,7 @@ public class PIMPage extends BasePage {
 
     //------------Normal Method (Input)------------//
     public void inputEmployeeName(String empname){
+        waitForElementVisible(inputEmployeeName, 5); 
         if(!isElementDisplayed(inputEmployeeName)){
             System.out.println("Employee name input not visible!");
             return;
@@ -108,7 +119,9 @@ public class PIMPage extends BasePage {
         type(inputEmployeeName, empname);
         System.out.println("Employee name input filled");
     }
+
     public void inputEmployeeID(String empID){
+        waitForElementVisible(inputEmployeeID, 5);
         if(!isElementDisplayed(inputEmployeeID)){
             System.out.println("Employee ID input not visible!");
             return;
@@ -118,7 +131,9 @@ public class PIMPage extends BasePage {
         type(inputEmployeeID, empID);
         System.out.println("Employee ID input filled");
     }
+
     public void inputSupervisorName(String supname){
+        waitForElementVisible(inputSupervisorName, 5);
         if(!isElementDisplayed(inputSupervisorName)){
             System.out.println("Supervisor name input not visible!");
             return;
@@ -128,7 +143,9 @@ public class PIMPage extends BasePage {
         type(inputSupervisorName, supname);
         System.out.println("Supervisor name input filled");
     }
+
     public void clickAddBtn(){
+        waitForElementVisible(addBtn, 5); 
         if(!isElementDisplayed(addBtn)){
             System.out.println("Add button not visible!");
             return;
@@ -136,7 +153,9 @@ public class PIMPage extends BasePage {
         click(addBtn);
         System.out.println("Add button clicked");
     }
+
     public void clickSearchBtn(){
+        waitForElementVisible(searchBtn, 5);
         if(!isElementDisplayed(searchBtn)){
             System.out.println("Search button not visible!");
             return;
@@ -144,7 +163,9 @@ public class PIMPage extends BasePage {
         click(searchBtn);
         System.out.println("Search button clicked");
     }
+
     public void clickResetBtn(){
+        waitForElementVisible(resetBtn, 5);
         if(!isElementDisplayed(resetBtn)){
             System.out.println("Reset button not visible!");
             return;
@@ -155,6 +176,7 @@ public class PIMPage extends BasePage {
 
     //------------Dynamic Method (Input)------------//
     public void selectEmploymentStatus(String optionText) {
+        waitForElementVisible(inputEmploymentStatus, 5);
         if (!isElementDisplayed(inputEmploymentStatus)) {
             System.out.println("Employment status input not visible!");
             return;
@@ -163,7 +185,9 @@ public class PIMPage extends BasePage {
         System.out.println("Employment status input clicked");
         click(employmentStatusOption(optionText));
     }
+
     public void selectInclude(String optionText){
+        waitForElementVisible(inputInclude, 5);
         if(!isElementDisplayed(inputInclude)){
             System.out.println("Include input not visible!");
             return;
@@ -172,7 +196,9 @@ public class PIMPage extends BasePage {
         System.out.println("Include input clicked");
         click(includeOption(optionText));
     }
+
     public void selectJobTitle(String optionText){
+        waitForElementVisible(inputJobTitle, 5);
         if(!isElementDisplayed(inputJobTitle)){
             System.out.println("Job title input not visible!");
             return;
@@ -181,7 +207,9 @@ public class PIMPage extends BasePage {
         System.out.println("Job title input clicked");
         click(jobTitleOption(optionText));
     }
+
     public void selectSubUnit(String optionText){
+        waitForElementVisible(inputSubUnit, 5);
         if(!isElementDisplayed(inputSubUnit)){
             System.out.println("Sub unit input not visisble!");
             return;
