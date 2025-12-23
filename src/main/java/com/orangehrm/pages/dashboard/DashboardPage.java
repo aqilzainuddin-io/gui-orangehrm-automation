@@ -1,7 +1,12 @@
 package com.orangehrm.pages.dashboard;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.orangehrm.pages.BasePage;
 
@@ -35,6 +40,11 @@ public class DashboardPage extends BasePage {
     // constructor
     public DashboardPage(WebDriver driver) {
         super(driver);
+    }
+
+    //-----------wait for element method-----------//
+    private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     // method
@@ -116,6 +126,7 @@ public class DashboardPage extends BasePage {
         click(adminPage);
     }
     public void clickPIMPage(){
+        waitForElementVisible(pimPage, 5);
         if(!isElementDisplayed(pimPage)){
             System.out.println("PIM navigation link not visible!");
         }
