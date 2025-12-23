@@ -11,7 +11,7 @@ import com.orangehrm.pages.dashboard.DashboardPage;
 import com.orangehrm.pages.login.LoginPage;
 import com.orangehrm.pages.pim.PIMPage;
 
-public class PIMTest extends BaseTest  {
+public class SearchEmpTest extends BaseTest  {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private PIMPage pimPage;
