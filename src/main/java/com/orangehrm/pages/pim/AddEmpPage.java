@@ -34,8 +34,8 @@ public class AddEmpPage extends BasePage {
     private By inputEmpID = By.xpath("//label[contains(normalize-space(),'Employee Id')]/../following-sibling::div//input");
     private By inputCreateLoginDetails = By.xpath("//p[contains(normalize-space(),'Create Login Details')]/following::span");
     private By inputUsername = By.xpath("//label[contains(normalize-space(),'Username')]/../following-sibling::div/input");
-    private By statusEnabled = By.xpath("//label[contains(normalize-space(),'Enabled')]/input");
-    private By statusDisabled = By.xpath("//label[contains(normalize-space(),'Disabled')]/input");
+    private By statusEnabled = By.xpath("//div[@class='oxd-radio-wrapper']//label[contains(., 'Enabled')]");
+    private By statusDisabled = By.xpath("//div[@class='oxd-radio-wrapper']//label[contains(., 'Disabled')]");
     private By inputPassword = By.xpath("//label[normalize-space(text())='Password']/../following-sibling::div/input");
     private By inputConfirmPassword = By.xpath("//label[normalize-space(text())='Confirm Password']/../following-sibling::div/input");
     
@@ -85,6 +85,7 @@ public class AddEmpPage extends BasePage {
 
     //------------Action Method (Input)------------//
     public void inputEmpFirstName(String empfirstname){
+        waitForElementVisible(empFirstName, 5);
         if(!isElementDisplayed(empFirstName)){
             System.out.println("Employee First Name input not visible!");
             return;
@@ -94,7 +95,9 @@ public class AddEmpPage extends BasePage {
         type(empFirstName, empfirstname);
         System.out.println("Employee first name input filled");
     }
+
     public void inputEmpLastName(String emplastname){
+        waitForElementVisible(empLastName, 5);
         if(!isElementDisplayed(empLastName)){
             System.out.println("Employee last name input not visible!");
             return;
@@ -104,7 +107,9 @@ public class AddEmpPage extends BasePage {
         type(empLastName, emplastname);
         System.out.println("Employee last name input filled");
     }
+
     public void inputEmpID(String empID){
+        waitForElementVisible(inputEmpID, 5);
         if(!isElementDisplayed(inputEmpID)){
             System.out.println("Employee ID input not visible!");
             return;
@@ -114,7 +119,9 @@ public class AddEmpPage extends BasePage {
         type(inputEmpID, empID);
         System.out.println("Employee ID input filled");
     }
+
     public void inputUsername(String username){
+        waitForElementVisible(inputUsername, 5);
         if(!isElementDisplayed(inputUsername)){
             System.out.println("Username input not visible!");
             return;
@@ -124,7 +131,9 @@ public class AddEmpPage extends BasePage {
         type(inputUsername, username);
         System.out.println("Username input filled");
     }
+
     public void clickStatusEnable(){
+        waitForElementVisible(statusEnabled, 5);
         if(!isElementDisplayed(statusEnabled)){
             System.out.println("Status enable not visible!");
             return;
@@ -132,7 +141,9 @@ public class AddEmpPage extends BasePage {
         click(statusEnabled);
         System.out.println("Status enable clicked");
     }
+
     public void clickStatusDisable(){
+        waitForElementVisible(statusDisabled, 5);
         if(!isElementDisplayed(statusDisabled)){
             System.out.println("Status disable not visible!");
             return;
@@ -140,7 +151,9 @@ public class AddEmpPage extends BasePage {
         click(statusDisabled);
         System.out.println("Status disable clicked");
     }
+
     public void inputPassword(String pass){
+        waitForElementVisible(inputPassword, 5);
         if(!isElementDisplayed(inputPassword)){
             System.out.println("Password input not visable!");
             return;
@@ -150,7 +163,9 @@ public class AddEmpPage extends BasePage {
         type(inputPassword, pass);
         System.out.println("Password input filled");
     }
+
     public void inputConfirmPassword(String confirmpass){
+        waitForElementVisible(inputConfirmPassword, 5);
         if(!isElementDisplayed(inputConfirmPassword)){
             System.out.println("Confirm password input not visable!");
             return;
@@ -160,7 +175,9 @@ public class AddEmpPage extends BasePage {
         type(inputConfirmPassword, confirmpass);
         System.out.println("Confirm password input filled");
     }
+
     public void clickSaveBtn(){
+        waitForElementVisible(saveBtn, 5);
         if(!isElementDisplayed(saveBtn)){
             System.out.println("Save button not visible!");
             return;
@@ -168,7 +185,9 @@ public class AddEmpPage extends BasePage {
         click(saveBtn);
         System.out.println("Save button clicked");
     }
+
     public void clickCancelBtn(){
+        waitForElementVisible(cancelBtn, 5);
         if(!isElementDisplayed(cancelBtn)){
             System.out.println("Cancel button not visible!");
             return;
@@ -176,7 +195,9 @@ public class AddEmpPage extends BasePage {
         click(cancelBtn);
         System.out.println("Cancel button clicked");
     }
+
     public void clickCreateLoginDetails(){
+        waitForElementVisible(inputCreateLoginDetails, 5);
         if(!isElementDisplayed(inputCreateLoginDetails)){
             System.out.println("Create login details toggle not visible!");
             return;
