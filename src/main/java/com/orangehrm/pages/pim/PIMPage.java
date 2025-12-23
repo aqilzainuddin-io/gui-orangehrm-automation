@@ -107,8 +107,10 @@ public class PIMPage extends BasePage {
     public boolean isRecordFoundByFirstLastNameVisible(){
         return isElementDisplayed(recordFoundByFirstLastName);
     }
+    public boolean isUpdatedRecordFoundByFirstLastNameVisible(){
+        return isElementDisplayed(updatedRecordFoundByFirstLastName);
+    }
     
-
     //------------Normal Method (Input)------------//
     public void inputEmployeeName(String empname){
         waitForElementVisible(inputEmployeeName, 5); 
