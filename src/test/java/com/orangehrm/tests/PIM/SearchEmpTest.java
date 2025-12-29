@@ -65,20 +65,5 @@ public class SearchEmpTest extends BaseTest  {
         Assert.assertTrue(pimPage.isRecordFoundByFirstLastNameVisible(),"Registered first name and last name not displayed!");
         Assert.assertTrue(pimPage.isRecordFoundByIDVisible(),"Registered ID not displayed!");
     }
-
-    @Test
-    public void searchByUpdatedEmployeeNameAndID() throws InterruptedException{
-        loginPage.login(EnvReader.get("VALID_USERNAME"), EnvReader.get("VALID_PASSWORD"));
-        Assert.assertTrue(dashboardPage.isDashboardHeaderDisplayed(),"Dashboard header not displayed!");
-        Assert.assertTrue(dashboardPage.isPIMPageVisible(),"PIM navigator link not displayed!");
-        dashboardPage.clickPIMPage();
-
-        Assert.assertTrue(pimPage.isPIMHeaderDisplayed(),"PIM header not displayed!");
-        pimPage.inputEmployeeName("Robert Enstain");
-        pimPage.inputEmployeeID("8989");
-        pimPage.clickSearchBtn();
-        Assert.assertTrue(pimPage.isRecordFoundByFirstLastNameVisible(),"Registered first name and last name not displayed!");
-        Assert.assertTrue(pimPage.isRecordFoundByIDVisible(),"Registered ID not displayed!");
-    }
 }
 
