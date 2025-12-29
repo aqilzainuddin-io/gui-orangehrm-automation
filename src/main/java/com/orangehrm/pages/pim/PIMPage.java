@@ -57,13 +57,17 @@ public class PIMPage extends BasePage {
     private By searchBtn = By.xpath("//button[normalize-space()='Search']");
     private By resetBtn = By.xpath("//button[normalize-space()='Reset']");
     private By addBtn = By.xpath("//button[normalize-space()='Add']");
-    private By editBtn = By.xpath("//div[contains(@class,'card-header-slot-content')]//i[contains(@class,'bi-pencil-fill')]");
-    private By deleteBtn = By.xpath("//div[contains(@class,'card-header-slot-content')]//i[contains(@class,'bi-trash')]");
+    private By editBtn = By.xpath("//div[text()='8989']/following::div[@class='oxd-table-cell-actions']//i[@class='oxd-icon bi-pencil-fill']");
+    private By deleteBtn = By.xpath("//div[text()='8989']/following::div[@class='oxd-table-cell-actions']//i[@class='oxd-icon bi-trash']");
+    private By popoutConfirmationDltMsg = By.xpath("//div[@class='orangehrm-modal-header']//p[text()='Are you Sure?']");
+    private By confirmDltBtn = By.xpath("//button[normalize-space()='Yes, Delete']");
+    private By cancelDltBtn = By.xpath("//button[normalize-space()='No, Cancel']");
+    private By successfullyDeletedMsg = By.xpath("//div[contains(@class,'oxd-toast-content--success')]//p[text()='Successfully Deleted']");
 
     private By recordFoundTitle = By.xpath("//span[contains(normalize-space(),'Record Found')]");
     private By recordFoundByID = By.xpath("//div[text()='8989']");
     private By recordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='John52'] and .//div[normalize-space(text())='Doe']]");
-    private By updatedRecordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='Robert'] and .//div[normalize-space(text())='Enstain']]");
+    private By updatedRecordFoundByFirstLastName = By.xpath("//div[contains(@class, 'oxd-table-row') and .//div[normalize-space(text())='FinnTeo'] and .//div[normalize-space(text())='Enstain']]");
 
     //-----------wait for element method-----------//
     private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
@@ -105,11 +109,25 @@ public class PIMPage extends BasePage {
         return isElementDisplayed(recordFoundByID);
     }
     public boolean isRecordFoundByFirstLastNameVisible(){
-        return isElementDisplayed(recordFoundByFirstLastName);
+        return waitForElementVisible(recordFoundByFirstLastName, 10).isDisplayed();
     }
     public boolean isUpdatedRecordFoundByFirstLastNameVisible(){
+        return waitForElementVisible(updatedRecordFoundByFirstLastName, 10).isDisplayed();
+    }
+    public boolean isPopoutConfirmationDltMsgVisible(){
+        return waitForElementVisible(popoutConfirmationDltMsg, 10).isDisplayed();
+    }
+    public boolean isSuccessfullyDeletedMsgVisible(){
+        return waitForElementVisible(successfullyDeletedMsg, 10).isDisplayed();
+    }
+
+    public boolean isUpdatedRecordFoundByFirstLastNameExist(){
         return isElementDisplayed(updatedRecordFoundByFirstLastName);
     }
+    public boolean isRecordFoundByIDExist(){
+        return isElementDisplayed(recordFoundByID);
+    }
+
     
     //------------Normal Method (Input)------------//
     public void inputEmployeeName(String empname){
@@ -241,5 +259,25 @@ public class PIMPage extends BasePage {
         }
         click(deleteBtn);
         System.out.println("Delete button clicked");
+    }
+
+    public void confirmDeleteBtn(){
+        waitForElementVisible(confirmDltBtn, 5);
+        if(!isElementDisplayed(confirmDltBtn)){
+            System.out.println("Confirm delete button not visible!");
+            return;
+        }
+        click(confirmDltBtn);
+        System.out.println("Confirm delete button clicked");
+    }
+    
+    public void cancelDeleteBtn(){
+        waitForElementVisible(cancelDltBtn, 5);
+        if(!isElementDisplayed(cancelDltBtn)){
+            System.out.println("Cancel delete button not visible!");
+            return;
+        }
+        click(cancelDltBtn);
+        System.out.println("Cancel delete button clicked");
     }
 }
