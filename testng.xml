@@ -7,7 +7,9 @@
             <class name="com.orangehrm.tests.Login.LoginTest"/>
             <class name="com.orangehrm.tests.Dashboard.DashboardTest"/>
             <class name="com.orangehrm.tests.PIM.AddEmpTest"/>
-            <class name="com.orangehrm.tests.PIM.PIMTest"/>
+            <class name="com.orangehrm.tests.PIM.SearchEmpTest"/>
+            <class name="com.orangehrm.tests.PIM.EditEmpTest"/>
+            <class name="com.orangehrm.tests.PIM.DeleteEmpTest"/>
         </classes>
     </test>
 </suite>
