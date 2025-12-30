@@ -10,14 +10,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.orangehrm.pages.BasePage;
 
+/**
+ * Page Object Model for Add Employee Page (PIM)
+ * Contains locators and actions related to adding a new employee
+ */
 public class AddEmpPage extends BasePage {
-    
-    // constructor
+
+    /**
+     * Constructor for AddEmpPage
+     *
+     * @param driver WebDriver instance
+     */
     public AddEmpPage(WebDriver driver) {
         super(driver);
     }
 
-    //locators-label
+    /**
+     * Locators for Add Employee page labels
+     */
     private By header = By.xpath("//h6[contains(normalize-space(),'PIM')]");
     private By pageTitle = By.xpath("//h6[contains(normalize-space(),'Add Employee')]");
     private By empFullName = By.xpath("//label[contains(normalize-space(),'Employee Full Name')]");
@@ -28,7 +38,9 @@ public class AddEmpPage extends BasePage {
     private By password = By.xpath("//label[normalize-space(text())='Password']");
     private By confirmPassword = By.xpath("//label[normalize-space(text())='Confirm Password']");
 
-    //locators-input
+    /**
+     * Locators for Add Employee page input fields
+     */
     private By empFirstName = By.xpath("//input[@name='firstName']");
     private By empLastName = By.xpath("//input[@name='lastName']");
     private By inputEmpID = By.xpath("//label[contains(normalize-space(),'Employee Id')]/../following-sibling::div//input");
@@ -38,171 +50,246 @@ public class AddEmpPage extends BasePage {
     private By statusDisabled = By.xpath("//div[@class='oxd-radio-wrapper']//label[contains(., 'Disabled')]");
     private By inputPassword = By.xpath("//label[normalize-space(text())='Password']/../following-sibling::div/input");
     private By inputConfirmPassword = By.xpath("//label[normalize-space(text())='Confirm Password']/../following-sibling::div/input");
-    
-    //locators-button
+
+    /**
+     * Locators for Add Employee page buttons
+     */
     private By saveBtn = By.xpath("//button[normalize-space()='Save']");
     private By cancelBtn = By.xpath("//button[normalize-space()='Cancel']");
 
-    //locators-message
+    /**
+     * Locators for Add Employee page messages
+     */
     private By successfullySavedMsg = By.xpath("//div/p[contains(normalize-space(),'Successfully Saved')]");
 
-    //-----------wait for element method-----------//
+    /**
+     * Waits until an element is visible on the page
+     *
+     * @param locator element locator
+     * @param timeoutInSeconds wait duration
+     * @return visible WebElement
+     */
     private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    //------------Getter Method (Label)------------//
-    public boolean isHeaderDisplayed(){
+    /**
+     * Verifies PIM header visibility
+     */
+    public boolean isHeaderDisplayed() {
         return waitForElementVisible(header, 10).isDisplayed();
     }
-    public boolean isPageTitleVisible(){
+
+    /**
+     * Verifies Add Employee page title visibility
+     */
+    public boolean isPageTitleVisible() {
         return waitForElementVisible(pageTitle, 10).isDisplayed();
     }
-    public boolean isEmpFullNameVisible(){
+
+    /**
+     * Verifies Employee Full Name label visibility
+     */
+    public boolean isEmpFullNameVisible() {
         return waitForElementVisible(empFullName, 10).isDisplayed();
     }
-    public boolean isEmpIDVisible(){
+
+    /**
+     * Verifies Employee ID label visibility
+     */
+    public boolean isEmpIDVisible() {
         return waitForElementVisible(empID, 10).isDisplayed();
     }
-    public boolean isCreateLoginDetailsVisible(){
+
+    /**
+     * Verifies Create Login Details section visibility
+     */
+    public boolean isCreateLoginDetailsVisible() {
         return waitForElementVisible(createLoginDetails, 10).isDisplayed();
     }
-    public boolean isUsernameVisible(){
+
+    /**
+     * Verifies Username label visibility
+     */
+    public boolean isUsernameVisible() {
         return waitForElementVisible(username, 10).isDisplayed();
     }
-    public boolean isStatusVisible(){
+
+    /**
+     * Verifies Status label visibility
+     */
+    public boolean isStatusVisible() {
         return waitForElementVisible(status, 10).isDisplayed();
     }
-    public boolean isPasswordVisible(){
+
+    /**
+     * Verifies Password label visibility
+     */
+    public boolean isPasswordVisible() {
         return waitForElementVisible(password, 10).isDisplayed();
     }
-    public boolean isConfirmPasswordVisible(){
+
+    /**
+     * Verifies Confirm Password label visibility
+     */
+    public boolean isConfirmPasswordVisible() {
         return waitForElementVisible(confirmPassword, 10).isDisplayed();
     }
-    public boolean isSuccessfullySavedMsgVisible(){
+
+    /**
+     * Verifies successfully saved message visibility
+     */
+    public boolean isSuccessfullySavedMsgVisible() {
         return waitForElementVisible(successfullySavedMsg, 30).isDisplayed();
     }
 
-    //------------Action Method (Input)------------//
-    public void inputEmpFirstName(String empfirstname){
+    /**
+     * Inputs employee first name
+     *
+     * @param empfirstname employee first name
+     */
+    public void inputEmpFirstName(String empfirstname) {
         waitForElementVisible(empFirstName, 5);
-        if(!isElementDisplayed(empFirstName)){
+        if (!isElementDisplayed(empFirstName)) {
             System.out.println("Employee First Name input not visible!");
             return;
         }
         click(empFirstName);
-        System.out.println("Employee first name input clicked");
         type(empFirstName, empfirstname);
-        System.out.println("Employee first name input filled");
     }
 
-    public void inputEmpLastName(String emplastname){
+    /**
+     * Inputs employee last name
+     *
+     * @param emplastname employee last name
+     */
+    public void inputEmpLastName(String emplastname) {
         waitForElementVisible(empLastName, 5);
-        if(!isElementDisplayed(empLastName)){
+        if (!isElementDisplayed(empLastName)) {
             System.out.println("Employee last name input not visible!");
             return;
         }
         click(empLastName);
-        System.out.println("Employee last name input clicked");
         type(empLastName, emplastname);
-        System.out.println("Employee last name input filled");
     }
 
-    public void inputEmpID(String empID){
+    /**
+     * Inputs employee ID
+     *
+     * @param empID employee ID
+     */
+    public void inputEmpID(String empID) {
         waitForElementVisible(inputEmpID, 5);
-        if(!isElementDisplayed(inputEmpID)){
+        if (!isElementDisplayed(inputEmpID)) {
             System.out.println("Employee ID input not visible!");
             return;
         }
         click(inputEmpID);
-        System.out.println("Employee ID input clicked");
         type(inputEmpID, empID);
-        System.out.println("Employee ID input filled");
     }
 
-    public void inputUsername(String username){
+    /**
+     * Inputs username for login details
+     *
+     * @param username application username
+     */
+    public void inputUsername(String username) {
         waitForElementVisible(inputUsername, 5);
-        if(!isElementDisplayed(inputUsername)){
+        if (!isElementDisplayed(inputUsername)) {
             System.out.println("Username input not visible!");
             return;
         }
         click(inputUsername);
-        System.out.println("Username input clicked");
         type(inputUsername, username);
-        System.out.println("Username input filled");
     }
 
-    public void clickStatusEnable(){
+    /**
+     * Selects Enabled status
+     */
+    public void clickStatusEnable() {
         waitForElementVisible(statusEnabled, 5);
-        if(!isElementDisplayed(statusEnabled)){
+        if (!isElementDisplayed(statusEnabled)) {
             System.out.println("Status enable not visible!");
             return;
         }
         click(statusEnabled);
-        System.out.println("Status enable clicked");
     }
 
-    public void clickStatusDisable(){
+    /**
+     * Selects Disabled status
+     */
+    public void clickStatusDisable() {
         waitForElementVisible(statusDisabled, 5);
-        if(!isElementDisplayed(statusDisabled)){
+        if (!isElementDisplayed(statusDisabled)) {
             System.out.println("Status disable not visible!");
             return;
         }
         click(statusDisabled);
-        System.out.println("Status disable clicked");
     }
 
-    public void inputPassword(String pass){
+    /**
+     * Inputs password
+     *
+     * @param pass password value
+     */
+    public void inputPassword(String pass) {
         waitForElementVisible(inputPassword, 5);
-        if(!isElementDisplayed(inputPassword)){
-            System.out.println("Password input not visable!");
+        if (!isElementDisplayed(inputPassword)) {
+            System.out.println("Password input not visible!");
             return;
         }
         click(inputPassword);
-        System.out.println("Password input clicked");
         type(inputPassword, pass);
-        System.out.println("Password input filled");
     }
 
-    public void inputConfirmPassword(String confirmpass){
+    /**
+     * Inputs confirm password
+     *
+     * @param confirmpass confirm password value
+     */
+    public void inputConfirmPassword(String confirmpass) {
         waitForElementVisible(inputConfirmPassword, 5);
-        if(!isElementDisplayed(inputConfirmPassword)){
-            System.out.println("Confirm password input not visable!");
+        if (!isElementDisplayed(inputConfirmPassword)) {
+            System.out.println("Confirm password input not visible!");
             return;
         }
         click(inputConfirmPassword);
-        System.out.println("Confirm password input clicked");
         type(inputConfirmPassword, confirmpass);
-        System.out.println("Confirm password input filled");
     }
 
-    public void clickSaveBtn(){
+    /**
+     * Clicks Save button
+     */
+    public void clickSaveBtn() {
         waitForElementVisible(saveBtn, 5);
-        if(!isElementDisplayed(saveBtn)){
+        if (!isElementDisplayed(saveBtn)) {
             System.out.println("Save button not visible!");
             return;
         }
         click(saveBtn);
-        System.out.println("Save button clicked");
     }
 
-    public void clickCancelBtn(){
+    /**
+     * Clicks Cancel button
+     */
+    public void clickCancelBtn() {
         waitForElementVisible(cancelBtn, 5);
-        if(!isElementDisplayed(cancelBtn)){
+        if (!isElementDisplayed(cancelBtn)) {
             System.out.println("Cancel button not visible!");
             return;
         }
         click(cancelBtn);
-        System.out.println("Cancel button clicked");
     }
 
-    public void clickCreateLoginDetails(){
+    /**
+     * Clicks Create Login Details toggle
+     */
+    public void clickCreateLoginDetails() {
         waitForElementVisible(inputCreateLoginDetails, 5);
-        if(!isElementDisplayed(inputCreateLoginDetails)){
+        if (!isElementDisplayed(inputCreateLoginDetails)) {
             System.out.println("Create login details toggle not visible!");
             return;
         }
         click(inputCreateLoginDetails);
-        System.out.println("Create login details toggle clicked");
     }
 }
