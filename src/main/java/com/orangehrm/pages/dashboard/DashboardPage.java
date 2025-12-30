@@ -10,10 +10,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.orangehrm.pages.BasePage;
 
-
+/**
+ * Page Object Model for Dashboard Page
+ * Contains locators and actions related to the Dashboard screen
+ */
 public class DashboardPage extends BasePage {
 
-    // locator for something visible only when login is successful
+    /**
+     * Locators for Dashboard Page widgets
+     */
     private By dashboardHeader = By.xpath("//h6[text()='Dashboard']");
     private By quickLaunch = By.xpath("//p[text()='Quick Launch']");
     private By timeAtWork = By.xpath("//p[text()='Time at Work']");
@@ -23,7 +28,9 @@ public class DashboardPage extends BasePage {
     private By employeeDistributionbySubUnit = By.xpath("//p[text()='Employee Distribution by Sub Unit']");
     private By employeeDistributionbyLocation = By.xpath("//p[text()='Employee Distribution by Location']");
 
-    // locator for all page in navigation bar
+    /**
+     * Locators for Dashboard left navigation menu
+     */
     private By adminPage = By.xpath("//span[text()='Admin']");
     private By pimPage = By.xpath("//span[text()='PIM']");
     private By leavePage = By.xpath("//span[text()='Leave']");
@@ -37,99 +44,192 @@ public class DashboardPage extends BasePage {
     private By claimPage = By.xpath("//span[text()='Claim']");
     private By buzzPage = By.xpath("//span[text()='Buzz']");
 
-    // constructor
+    /**
+     * Constructor for DashboardPage
+     *
+     * @param driver WebDriver instance
+     */
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
-    //-----------wait for element method-----------//
+    /**
+     * Waits until an element is visible on the page
+     *
+     * @param locator element locator
+     * @param timeoutInSeconds wait duration
+     * @return visible WebElement
+     */
     private WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    // method
+    /**
+     * Verifies Dashboard header is displayed
+     */
     public boolean isDashboardHeaderDisplayed() {
         return isElementDisplayed(dashboardHeader);
     }
 
+    /**
+     * Returns Dashboard page title text
+     */
     public String getDashboardTitle() {
         return getText(dashboardHeader);
     }
 
+    /**
+     * Verifies Quick Launch widget visibility
+     */
     public boolean isQuickLaunchVisible() {
         return isElementDisplayed(quickLaunch);
     }
 
+    /**
+     * Verifies Time at Work widget visibility
+     */
     public boolean isTimeAtWorkVisible() {
         return isElementDisplayed(timeAtWork);
     }
 
+    /**
+     * Verifies My Actions widget visibility
+     */
     public boolean isMyActionsVisible() {
         return isElementDisplayed(myActions);
     }
 
+    /**
+     * Verifies Buzz Latest Posts widget visibility
+     */
     public boolean isBuzzLatestPostsVisible() {
         return isElementDisplayed(buzzLatestPosts);
     }
 
+    /**
+     * Verifies Employees on Leave Today widget visibility
+     */
     public boolean isEmployeesOnLeaveTodayVisible() {
         return isElementDisplayed(employeesOnLeaveToday);
     }
 
+    /**
+     * Verifies Employee Distribution by Sub Unit widget visibility
+     */
     public boolean isEmployeeDistributionBySubUnitVisible() {
         return isElementDisplayed(employeeDistributionbySubUnit);
     }
 
+    /**
+     * Verifies Employee Distribution by Location widget visibility
+     */
     public boolean isEmployeeDistributionByLocationVisible() {
         return isElementDisplayed(employeeDistributionbyLocation);
     }
 
-    // method 
-    public boolean isAdminPageVisible(){
+    /**
+     * Verifies Admin navigation link visibility
+     */
+    public boolean isAdminPageVisible() {
         return isElementDisplayed(adminPage);
     }
-    public boolean isPIMPageVisible(){
+
+    /**
+     * Verifies PIM navigation link visibility
+     */
+    public boolean isPIMPageVisible() {
         return isElementDisplayed(pimPage);
     }
-    public boolean isLeavePageVisible(){
+
+    /**
+     * Verifies Leave navigation link visibility
+     */
+    public boolean isLeavePageVisible() {
         return isElementDisplayed(leavePage);
     }
-    public boolean isTimePageVisible(){
+
+    /**
+     * Verifies Time navigation link visibility
+     */
+    public boolean isTimePageVisible() {
         return isElementDisplayed(timePage);
     }
-    public boolean isRecruitmentPageVisible(){
+
+    /**
+     * Verifies Recruitment navigation link visibility
+     */
+    public boolean isRecruitmentPageVisible() {
         return isElementDisplayed(recruitmentPage);
     }
-    public boolean isMyInfoPageVisible(){
+
+    /**
+     * Verifies My Info navigation link visibility
+     */
+    public boolean isMyInfoPageVisible() {
         return isElementDisplayed(myInfoPage);
     }
-    public boolean isPerformancePageVisible(){
+
+    /**
+     * Verifies Performance navigation link visibility
+     */
+    public boolean isPerformancePageVisible() {
         return isElementDisplayed(performancePage);
     }
-    public boolean isDashboardPageVisible(){
+
+    /**
+     * Verifies Dashboard navigation link visibility
+     */
+    public boolean isDashboardPageVisible() {
         return isElementDisplayed(dashboardPage);
     }
-    public boolean isDirectoryPageVisible(){
+
+    /**
+     * Verifies Directory navigation link visibility
+     */
+    public boolean isDirectoryPageVisible() {
         return isElementDisplayed(directoryPage);
     }
-    public boolean isMaintenancePageVisible(){
+
+    /**
+     * Verifies Maintenance navigation link visibility
+     */
+    public boolean isMaintenancePageVisible() {
         return isElementDisplayed(maintenancePage);
     }
-    public boolean isClaimPageVisible(){
+
+    /**
+     * Verifies Claim navigation link visibility
+     */
+    public boolean isClaimPageVisible() {
         return isElementDisplayed(claimPage);
     }
-    public boolean isBuzzPageVisible(){
+
+    /**
+     * Verifies Buzz navigation link visibility
+     */
+    public boolean isBuzzPageVisible() {
         return isElementDisplayed(buzzPage);
     }
 
-    public void clickAdminPage(){
+    /**
+     * Clicks on Admin page from navigation menu
+     */
+    public void clickAdminPage() {
         click(adminPage);
     }
-    public void clickPIMPage(){
+
+    /**
+     * Clicks on PIM page from navigation menu
+     * Waits until the element is visible before clicking
+     */
+    public void clickPIMPage() {
         waitForElementVisible(pimPage, 5);
-        if(!isElementDisplayed(pimPage)){
+
+        if (!isElementDisplayed(pimPage)) {
             System.out.println("PIM navigation link not visible!");
         }
+
         click(pimPage);
         System.out.println("PIM navigation link clicked");
     }
