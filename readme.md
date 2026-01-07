@@ -16,7 +16,7 @@ This project contains an automation framework for **OrangeHRM** web application 
 ---
 
 ## Project Structure
-
+```text
 src/
 ├── main/
 │   └── java/
@@ -51,7 +51,7 @@ src/
                         ├── DeleteEmpTest.java
                         ├── EditEmpTest.java
                         └── SearchEmpTest.java
-
+```
 ---
 
 ## Technologies
